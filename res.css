@@ -1,0 +1,150 @@
+﻿html, body
+{
+    height: 100%;
+    width: 93%;
+    /*font-family: 'Trebuchet MS';*/
+    /*font-family: Arial;*/
+    /*font-family: Calibri;*/ /*no ios*/
+    /*font-family: Garamond;*/ /*no ios*/
+    /*font-family: 'Lucida Sans';*/ /*no ios*/
+    font-family: Calibri, 'Trebuchet MS', Arial;
+    /*font-size: 12pt;*/
+    font-size: 1em;
+    padding: 0;
+    margin: 0;
+    margin-left: 3%;
+    margin-right: 3%;
+    overflow: hidden;
+    /*background-color: darkgrey;*/
+    background-color: #444;
+}
+
+#shellheader {
+    /*background-color: #444;*/
+    /*background-color: cornsilk;*/
+    background-color: burlywood;
+    /*background-color: peru;*/
+    /*background-color: tan;*/
+    /*background-color: wheat;*/
+    /*color: darkblue;*/
+    /*color: #FFCC00;*/
+    /*color: #FFFF33;*/
+    /*color: #FFCC33;*/
+    /*color: cornsilk;*/
+    color: #444;
+    /*font-size: 16pt;*/
+    /*font-size: 130%;*/
+    font-size: 1.33em;
+    text-align: center;
+    font-weight: bold;
+}
+
+#shellfooter {
+    /*background-color: #444;*/
+    /*background-color: cornsilk;*/
+    background-color: burlywood;
+    /*background-color: peru;*/
+    /*background-color: tan;*/
+    /*background-color: wheat;*/
+    /*color: #FFCC00;*/
+    /*color: #FFFF33;*/
+    /*color: #FFCC33;*/
+    color: #444;
+    /*color: cornsilk;*/
+    /*font-size: 10pt;*/
+    font-size: 0.85em;
+    text-align: center;
+}
+
+#appLayout {
+    height: 100%;
+}
+
+a {
+    color: green;
+    /*color: cadetblue;*/
+    /*color: cornflowerblue;*/
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#tpms .dijitTitlePaneTitle, #tpms .dijitTitlePaneTextNode, #tpms .dijitTitlePaneContentOuter, #tpms .dijitTitlePaneContentInner {
+    background: #fcfcfc;
+    border: none;
+    padding-left: 0px;
+    margin-left: 0px;
+}
+#tpms .dijitArrowNode {
+    background-image: none;
+    width: 0px;
+}
+
+#tpesri .dijitTitlePaneTitle, #tpesri .dijitTitlePaneTextNode, #tpesri .dijitTitlePaneContentOuter, #tpesri .dijitTitlePaneContentInner {
+    background: #fcfcfc;
+    border: none;
+    padding-left: 0px;
+    margin-left: 0px;
+}
+#tpesri .dijitArrowNode {
+    background-image: none;
+    width: 0px;
+}
+
+#tpweb .dijitTitlePaneTitle, #tpweb .dijitTitlePaneTextNode, #tpweb .dijitTitlePaneContentOuter, #tpweb .dijitTitlePaneContentInner {
+    background: #fcfcfc;
+    border: none;
+    padding-left: 0px;
+    margin-left: 0px;
+}
+#tpweb .dijitArrowNode {
+    background-image: none;
+    width: 0px;
+}
+
+#tpmobile .dijitTitlePaneTitle, #tpmobile .dijitTitlePaneTextNode, #tpmobile .dijitTitlePaneContentOuter, #tpmobile .dijitTitlePaneContentInner {
+    background: #fcfcfc;
+    border: none;
+    padding-left: 0px;
+    margin-left: 0px;
+}
+#tpmobile .dijitArrowNode {
+    background-image: none;
+    width: 0px;
+}
+
+#tpcloud .dijitTitlePaneTitle, #tpcloud .dijitTitlePaneTextNode, #tpcloud .dijitTitlePaneContentOuter, #tpcloud .dijitTitlePaneContentInner {
+    background: #fcfcfc;
+    border: none;
+    padding-left: 0px;
+    margin-left: 0px;
+}
+#tpcloud .dijitArrowNode {
+    background-image: none;
+    width: 0px;
+}
+
+#tppl .dijitTitlePaneTitle, #tppl .dijitTitlePaneTextNode, #tppl .dijitTitlePaneContentOuter, #tppl .dijitTitlePaneContentInner {
+    background: #fcfcfc;
+    border: none;
+    padding-left: 0px;
+    margin-left: 0px;
+}
+#tppl .dijitArrowNode {
+    background-image: none;
+    width: 0px;
+}
+
+#tpind .dijitTitlePaneTitle, #tpind .dijitTitlePaneTextNode, #tpind .dijitTitlePaneContentOuter, #tpind .dijitTitlePaneContentInner {
+    background: #fcfcfc;
+    border: none;
+    padding-left: 0px;
+    margin-left: 0px;
+}
+#tpind .dijitArrowNode {
+    background-image: none;
+    width: 0px;
+}
+
+#tpind td {
+    padding-right: 25px;
+}
