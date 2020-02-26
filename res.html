@@ -1,0 +1,620 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Brian Loomis</title>
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/dojo/1.9.2/dijit/themes/tundra/tundra.css" />
+    <link rel="stylesheet" type="text/css" href="res.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.9.2/dojo/dojo.js"></script>
+    <script type="text/javascript" >
+        require(["dijit/layout/BorderContainer",
+        "dijit/layout/ContentPane",
+        "dijit/layout/StackContainer",
+        "dojo/dom-construct",
+        "dojo/domReady!"], function (BorderContainer, ContentPane, StackContainer, domConstruct) {
+            var sBC = new BorderContainer({
+                design: "headline",
+                gutters: true,
+                style: { "width": "100%", "height": "100%" }
+            }, "appLayout");
+            var d = domConstruct.create("div", {});
+            domConstruct.create("a", {
+                innerHTML: "Home",
+                onclick: function () {
+                    scSwitch("main");
+                }
+            }, d);
+            domConstruct.create("text", { innerHTML: "&nbsp;|&nbsp;" }, d);
+            domConstruct.create("a", {
+                innerHTML: "Work Experience",
+                onclick: function () {
+                    scSwitch("exp");
+                }
+            }, d);
+            domConstruct.create("text", { innerHTML: "&nbsp;|&nbsp;" }, d);
+            domConstruct.create("a", {
+                innerHTML: "Education",
+                onclick: function () {
+                    scSwitch("edu");
+                }
+            }, d);
+            domConstruct.create("text", { innerHTML: "&nbsp;|&nbsp;" }, d);
+            domConstruct.create("a", {
+                innerHTML: "Skills",
+                onclick: function () {
+                    scSwitch("skills");
+                }
+            }, d);
+            domConstruct.create("text", { innerHTML: "&nbsp;|&nbsp;" }, d);
+            domConstruct.create("a", {
+                innerHTML: "References",
+                onclick: function () {
+                    scSwitch("refs");
+                }
+            }, d);
+            /*
+            domConstruct.create("text", { innerHTML: "&nbsp;|&nbsp;" }, d);
+            domConstruct.create("a", {
+                innerHTML: "My Thoughts On",
+                onclick: function () {
+                    scSwitch("thoughts");
+                }
+            }, d);
+            */
+            /*
+            domConstruct.create("text", { innerHTML: "&nbsp;|&nbsp;" }, d);
+            domConstruct.create("a", {
+                innerHTML: "Community",
+                onclick: function () {
+                    scSwitch("com");
+                }
+            }, d);
+            */
+            domConstruct.create("text", { innerHTML: "&nbsp;|&nbsp;" }, d);
+            domConstruct.create("a", {
+                innerHTML: "Contact",
+                onclick: function () {
+                    scSwitch("contact");
+                }
+            }, d);
+            var hCP = new ContentPane({
+                region: "top",
+                //style: { "height": "25px" },
+                style: { "height": "3%" },
+                id: "shellheader"
+            });
+            hCP.set("content", d);
+            sBC.addChild(hCP);
+            var sc = new StackContainer({
+                region: "center",
+                id: "sc",
+            });
+            sBC.addChild(sc);
+            sc.addChild(new ContentPane({
+                id: "main",
+                //content: "Main"
+                //href: "main.html",
+                style: { "margin": "150px", "marginTop":"75px", "marginBottom":"75px", "textAlign":"justify" }
+            }));
+            sc.addChild(new ContentPane({
+                id: "exp"
+            }));
+            sc.addChild(new ContentPane({
+                id: "edu",
+                style: { "margin": "150px", "marginTop": "75px", "marginBottom": "75px", "textAlign": "justify" }
+            }));
+            sc.addChild(new ContentPane({
+                id: "skills",
+                //href: "skills.html",
+                style: { "marginLeft": "150px", "marginRight": "75px", "marginTop": "75px", "marginBottom": "75px", "textAlign": "justify" }
+            }));
+            /*
+            sc.addChild(new ContentPane({
+                id: "thoughts",
+                //content: "Project management; Firebug; device-oriented development; JavaScript; Dojo; ESRI; managing your own servers; designing for different browsers; geoprocessing models; etc."
+                href: "thoughts.html",
+                style: { "margin": "150px", "marginTop": "75px", "marginBottom": "75px", "textAlign": "justify" }
+            }));
+            */
+            /*
+            sc.addChild(new ContentPane({
+                id: "com",
+                style: { "margin": "150px", "marginTop": "75px", "marginBottom": "75px", "textAlign": "justify" }
+            }));
+            */
+            sc.addChild(new ContentPane({
+                id: "refs",
+                href: "refs.html",
+                style: { "margin": "150px", "marginTop": "75px", "marginBottom": "75px", "textAlign": "justify" }
+            }));
+            sc.addChild(new ContentPane({
+                id: "contact",
+                href: "contact.html",
+                style: { "margin": "150px", "marginTop": "75px", "marginBottom": "75px", "textAlign": "justify" }
+            }));
+            var bCP = new ContentPane({
+                region: "bottom",
+                content: "Thank you for visiting!&nbsp;|&nbsp;Brian Loomis&nbsp;|&nbsp;808-754-8925&nbsp;|&nbsp;brianloomis@hotmail.com&nbsp;|&nbsp;Download my resume:&nbsp;<a href='Brian_Loomis_Resume_Current_General.pdf' target='_blank'>PDF</a>&nbsp;|&nbsp;<a href='Brian_Loomis_Resume_Current_General.docx'>Word 2007+</a>",
+                //style: { "height": "15px" },
+                style: { "height": "2%" },
+                id: "shellfooter"
+            });
+            sBC.addChild(bCP);
+            sBC.startup();
+
+            scSwitch("main");
+        });
+    </script>
+    <script type="text/javascript">
+        function letterOpener(b) {
+            scSwitch(b);
+        }
+
+        function scSwitch(swi) {
+            require(["dijit/registry",
+            "dojo/dom-construct",
+            "dijit/TitlePane",
+            "dijit/form/HorizontalSlider",
+            "dijit/form/HorizontalRule",
+            "dijit/form/HorizontalRuleLabels",
+            "dijit/layout/BorderContainer",
+            "dijit/layout/ContentPane"], function (registry, domConstruct, TitlePane, HorizontalSlider, HorizontalRule, HorizontalRuleLabels, BorderContainer, ContentPane) {
+                registry.byId("sc").selectChild(registry.byId(swi));
+                switch (swi) {
+                    case "main":
+                        var d = domConstruct.create("div", {});
+                        registry.byId(swi).set("content", d);
+                        var today = new Date();
+                        domConstruct.create("label", {
+                            innerHTML: today.toLocaleDateString()
+                        }, d);
+                        domConstruct.place(domConstruct.toDom("<br /><br />"), d);
+                        var ltr = new ContentPane({ loadingMessage: "" }, domConstruct.create("div", {}, d));
+                        ltr.set("href", "cltr.html");
+                        var ltrend = new ContentPane({ loadingMessage: "" }, domConstruct.create("div", {}, d));
+                        ltrend.set("href", "cltrendres.html");
+                        /*
+                        domConstruct.create("img", {
+                            src: "Blank_US_Map.svg",
+                            alt: "Exp. Map"
+                        }, domConstruct.create("div", { style: { "backgroundColor": "#444" } }, d));
+                        */
+                        break;
+                    case "exp":
+                        var d = domConstruct.create("div", {});
+                        var slid = domConstruct.create("div", {}, d);
+                        var slil = new HorizontalRuleLabels({
+                            container: "bottomDecoration",
+                            labels: ["2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015"],
+                            //labelStyle: "font-style: italic; font-size: 0.75em; marginTop: 10px"
+                            labelStyle: "font-size: 0.75em; marginTop: 0px",
+                            style: { "marginLeft": "10px", "marginRight": "10px" }
+                        }, domConstruct.create("div", {}, slid, "first"));
+                        
+                        var slir = new HorizontalRule({
+                            container: "bottomDecoration",
+                            count: 14,
+                            //style: "height: 10px;"
+                            style: { "height": "8px" }
+
+                        }, domConstruct.create("div", {}, slid, "first"));
+                        
+                        var sli = new HorizontalSlider({
+                            id: "jobs",
+                            value: 147,
+                            minimum: 1,
+                            maximum: 157,
+                            discreteValues: 157,
+                            intermediateChanges: true,
+                            showButtons: false,
+                            style: { "marginLeft": "5px", "marginRight": "5px", "marginTop": "5px" },
+                            onChange: function (value) {
+                                var jd;
+                                if (value === 6 || value === 32 || value === 57 || value === 60 || value === 136 || value === 141) {
+                                    jd = new Date(2002, 0, 1);
+                                    jd.setMonth(value - 1);
+                                }
+                                if (value >= 1 && value < 32) {
+                                    if (registry.byId("tpARR").get("open") === false) registry.byId("tpARR").set("open", true);
+                                } else if (value >= 32 && value < 57) {
+                                    if (registry.byId("tpWP").get("open") === false) registry.byId("tpWP").set("open", true);
+                                } else if (value >= 57 && value < 60) {
+                                    if (registry.byId("tpLBS").get("open") === false) registry.byId("tpLBS").set("open", true);
+                                } else if (value >= 60 && value < 136) {
+                                    if (registry.byId("tpHITUS").get("open") === false) registry.byId("tpHITUS").set("open", true);
+                                } else if (value >= 136 && value < 141) {
+                                    if (registry.byId("tpCCH").get("open") === false) registry.byId("tpCCH").set("open", true);
+                                } else if (value >= 141) {
+                                    if (registry.byId("tpKSU").get("open") === false) registry.byId("tpKSU").set("open", true);
+                                }
+                            }
+                        }, slid);
+                        
+                        domConstruct.create("div", { style: { "height": "40px" } }, d);
+
+                        var tablediv = domConstruct.create("div", {}, d);
+                        var myt = domConstruct.create("table", {
+                            //cellSpacing: "0px",
+                            style: { "width": "100%","textAlign":"center" }
+                        }, tablediv);
+                        var mytr = domConstruct.create("tr", {}, myt);
+                        domConstruct.create("td", { style: { "backgroundColor": "gray", "width": "3%" } }, mytr);
+                        domConstruct.create("td", {
+                            innerHTML: "ARR",
+                            style: { "backgroundColor": "green", "cursor": "pointer", "width": "9%" },
+                            onclick: function () {
+                                registry.byId("tpARR").set("open", (!registry.byId("tpARR").get("open")));
+                            }
+                        }, mytr)
+                        domConstruct.create("td", {
+                            innerHTML: "MS GIS",
+                            style: { "backgroundColor": "gray", "width": "7%" }
+                        }, mytr);
+                        domConstruct.create("td", {
+                            innerHTML: "Woolpert",
+                            style: { "backgroundColor": "green", "cursor": "pointer", "width": "16%" },
+                            onclick: function () {
+                                registry.byId("tpWP").set("open", (!registry.byId("tpWP").get("open")));
+                            }
+                        }, mytr)
+                        domConstruct.create("td", {
+                            innerHTML: "L",
+                            style: { "backgroundColor": "green", "cursor": "pointer", "width": "2%" },
+                            onclick: function () {
+                                registry.byId("tpLBS").set("open", (!registry.byId("tpLBS").get("open")));
+                            }
+                        }, mytr);
+                        domConstruct.create("td", {
+                            innerHTML: "HI-Tech Urban Solutions",
+                            style: { "backgroundColor": "green", "cursor": "pointer", "width": "48%" },
+                            onclick: function () {
+                                registry.byId("tpHITUS").set("open", (!registry.byId("tpHITUS").get("open")));
+                            }
+                        }, mytr)
+                        domConstruct.create("td", {
+                            innerHTML: "CCH",
+                            style: { "backgroundColor": "green", "cursor": "pointer", "width": "3%" },
+                            onclick: function () {
+                                registry.byId("tpCCH").set("open", (!registry.byId("tpCCH").get("open")));
+                            }
+                        }, mytr)
+                        domConstruct.create("td", {
+                            innerHTML: "KSU",
+                            style: { "backgroundColor": "green", "cursor": "pointer", "width": "7%" },
+                            onclick: function () {
+                                registry.byId("tpKSU").set("open", (!registry.byId("tpKSU").get("open")));
+                            }
+                        }, mytr)
+                        domConstruct.create("td", { style: { "backgroundColor": "gray", "width": "5%" } }, mytr);
+
+                        domConstruct.create("div", { style: { "height": "40px" } }, d);
+
+                        var dl = domConstruct.create("div", {}, d);
+                        domConstruct.place(new TitlePane({
+                            id: "tpKSU",
+                            title: "<a>Kansas State University | September 2013 - August 2014</a>",
+                            //title: "<span style='color: #444'>Kansas State University | September 2013 - August 2014</span>",
+                            href: "kstate.html",
+                            preload: true,
+                            open: true,
+                            onClick: function () {
+                                if (this.get("open") === true) {
+                                    registry.byId("jobs").set("value", 141);
+                                }
+                            }
+                        }).domNode, dl);
+                        domConstruct.place(new TitlePane({
+                            id: "tpCCH",
+                            title: "<a>City and County of Honolulu | April - September 2013</a>",
+                            href: "cch.html",
+                            preload: true,
+                            open: false,
+                            onClick: function () {
+                                if (this.get("open") === true) {
+                                    registry.byId("jobs").set("value", 136);
+                                }
+                            }
+                        }).domNode, dl);
+                        domConstruct.place(new TitlePane({
+                            id: "tpCPDH",
+                            title: "<a>Celtic Pipes and Drums of Hawaii | November 2012 - Present</a>",
+                            href: "cpdh.html",
+                            preload: true,
+                            open: false,
+                            onClick: function () {
+                            }
+                        }).domNode, dl);
+                        domConstruct.place(new TitlePane({
+                            id: "tpHITUS",
+                            title: "<a>Hi-Tech Urban Solutions, Inc. | December 2006 - April 2013</a>",
+                            href: "hitus.html",
+                            preload: true,
+                            open: false,
+                            onClick: function () {
+                                if (this.get("open") === true) {
+                                    registry.byId("jobs").set("value", 60);
+                                }
+                            }
+                        }).domNode, dl);
+                        domConstruct.place(new TitlePane({
+                            id: "tpLBS",
+                            title: "<a>Lobaserv | September - December 2006</a>",
+                            href: "lobaserv.html",
+                            preload: true,
+                            open: false,
+                            onClick: function () {
+                                if (this.get("open") === true) {
+                                    registry.byId("jobs").set("value", 57);
+                                }
+                            }
+                        }).domNode, dl);
+                        domConstruct.place(new TitlePane({
+                            id: "tpHIGICC",
+                            title: "<a>HIGICC | July 2005 - June 2009</a>",
+                            href: "higicc.html",
+                            preload: true,
+                            open: false,
+                            onClick: function () {
+                            }
+                        }).domNode, dl);
+                        domConstruct.place(new TitlePane({
+                            id: "tpWP",
+                            title: "<a>Woolpert, Inc. | August 2004 - September 2006</a>",
+                            href: "wp.html",
+                            preload: true,
+                            open: false,
+                            onClick: function () {
+                                if (this.get("open") === true) {
+                                    registry.byId("jobs").set("value", 32);
+                                }
+                            }
+                        }).domNode, dl);
+                        domConstruct.place(new TitlePane({
+                            id: "tpARR",
+                            title: "<a>Audubon Research Ranch | June 2002 - August 2003</a>",
+                            href: "arr.html",
+                            preload: true,
+                            open: false,
+                            onClick: function () {
+                                if (this.get("open") === true) {
+                                    registry.byId("jobs").set("value", 6);
+                                }
+                            }
+                        }).domNode, dl);
+
+                        registry.byId(swi).set("content", d);
+
+                        break;
+                    case "edu":
+                        var d = domConstruct.create("div", {});
+                        registry.byId(swi).set("content", d);
+
+                        domConstruct.place(new TitlePane({
+                            id: "tpuor",
+                            title: "<a>University of Redlands | June 2003 - August 2004</a>",
+                            href: "uor.html",
+                            preload: true,
+                            open: true,
+                            onClick: function () {
+                            }
+                        }).domNode, d);
+                        domConstruct.place(new TitlePane({
+                            id: "tpku",
+                            title: "<a>University of Kansas | August 1995 - May 2000</a>",
+                            href: "ku.html",
+                            preload: true,
+                            open: false,
+                            onClick: function () {
+                            }
+                        }).domNode, d);
+                        domConstruct.place(new TitlePane({
+                            id: "tpcr",
+                            title: "<a>University of Kansas Study Abroad | June - July 1998</a>",
+                            href: "cr.html",
+                            preload: true,
+                            open: false,
+                            onClick: function () {
+                            }
+                        }).domNode, d);
+
+                        break;
+                    /*
+                    case "thoughts":
+                        //alert("hi thoughts");
+                        break;
+                    */
+                    case "skills":
+                        require(["dojo/fx"], function (fx) {
+                            var d = domConstruct.create("div", { style: { "paddingRight": "75px" } });
+                            registry.byId(swi).set("content", d);
+
+                            var dtms = domConstruct.create("div", {});
+                            domConstruct.place(new ContentPane({ href: "skillsmst.html", preload: true }, domConstruct.create("div", {})).domNode, dtms);
+                            domConstruct.place(new TitlePane({
+                                title: "<a>+ ...</a>",
+                                href: "skillsms.html",
+                                preload: true,
+                                open: false,
+                                onClick: function () {
+                                    if (this.open == true) {
+                                        this.set("title", "<a>- ...</a>");
+                                    } else {
+                                        this.set("title", "<a>+ ...</a>");
+                                    }
+                                }
+                            }).domNode, dtms);
+                            domConstruct.create("br", {}, dtms);
+                            domConstruct.place(new TitlePane({
+                                id: "tpms",
+                                title: "<a>Microsoft</a>",
+                                content: dtms,
+                                open: true,
+                                onClick: function () {
+                                }
+                            }).domNode, d);
+
+                            var dtesri = domConstruct.create("div", {});
+                            domConstruct.place(new ContentPane({ href: "skillsesrit.html", preload: true }, domConstruct.create("div", {})).domNode, dtesri);
+                            domConstruct.place(new TitlePane({
+                                title: "<a>+ ...</a>",
+                                href: "skillsesri.html",
+                                preload: true,
+                                open: false,
+                                onClick: function () {
+                                    if (this.open == true) {
+                                        this.set("title", "<a>- ...</a>");
+                                    } else {
+                                        this.set("title", "<a>+ ...</a>");
+                                    }
+                                }
+                            }).domNode, dtesri);
+                            domConstruct.create("br", {}, dtesri);
+                            domConstruct.place(new TitlePane({
+                                id: "tpesri",
+                                title: "<a>ESRI</a>",
+                                content: dtesri,
+                                open: true,
+                                onClick: function () {
+                                }
+                            }).domNode, d);
+
+                            var dtweb = domConstruct.create("div", {});
+                            domConstruct.place(new ContentPane({ href: "skillswebt.html", preload: true }, domConstruct.create("div", {})).domNode, dtweb);
+                            domConstruct.place(new TitlePane({
+                                title: "<a>+ ...</a>",
+                                href: "skillsweb.html",
+                                preload: true,
+                                open: false,
+                                onClick: function () {
+                                    if (this.open == true) {
+                                        this.set("title", "<a>- ...</a>");
+                                    } else {
+                                        this.set("title", "<a>+ ...</a>");
+                                    }
+                                }
+                            }).domNode, dtweb);
+                            domConstruct.create("br", {}, dtweb);
+                            domConstruct.place(new TitlePane({
+                                id: "tpweb",
+                                title: "<a>Web</a>",
+                                content: dtweb,
+                                open: true,
+                                onClick: function () {
+                                }
+                            }).domNode, d);
+
+                            var dtmobile = domConstruct.create("div", {});
+                            domConstruct.place(new ContentPane({ href: "skillsmobilet.html", preload: true }, domConstruct.create("div", {})).domNode, dtmobile);
+                            domConstruct.place(new TitlePane({
+                                title: "<a>+ ...</a>",
+                                href: "skillsmobile.html",
+                                preload: true,
+                                open: false,
+                                onClick: function () {
+                                    if (this.open == true) {
+                                        this.set("title", "<a>- ...</a>");
+                                    } else {
+                                        this.set("title", "<a>+ ...</a>");
+                                    }
+                                }
+                            }).domNode, dtmobile);
+                            domConstruct.create("br", {}, dtmobile);
+                            domConstruct.place(new TitlePane({
+                                id: "tpmobile",
+                                title: "<a>Mobile</a>",
+                                content: dtmobile,
+                                open: true,
+                                onClick: function () {
+                                }
+                            }).domNode, d);
+
+                            var dtcloud = domConstruct.create("div", {});
+                            domConstruct.place(new ContentPane({ href: "skillscloudt.html", preload: true }, domConstruct.create("div", {})).domNode, dtcloud);
+                            domConstruct.place(new TitlePane({
+                                title: "<a>+ ...</a>",
+                                href: "skillscloud.html",
+                                preload: true,
+                                open: false,
+                                onClick: function () {
+                                    if (this.open == true) {
+                                        this.set("title", "<a>- ...</a>");
+                                    } else {
+                                        this.set("title", "<a>+ ...</a>");
+                                    }
+                                }
+                            }).domNode, dtcloud);
+                            domConstruct.create("br", {}, dtcloud);
+                            domConstruct.place(new TitlePane({
+                                id: "tpcloud",
+                                title: "<a>Cloud</a>",
+                                content: dtcloud,
+                                open: true,
+                                onClick: function () {
+                                }
+                            }).domNode, d);
+
+                            var dtpl = domConstruct.create("div", {});
+                            domConstruct.place(new ContentPane({ href: "skillsplt.html", preload: true }, domConstruct.create("div", {})).domNode, dtpl);
+                            domConstruct.place(new TitlePane({
+                                title: "<a>+ ...</a>",
+                                href: "skillspl.html",
+                                preload: true,
+                                open: false,
+                                onClick: function () {
+                                    if (this.open == true) {
+                                        this.set("title", "<a>- ...</a>");
+                                    } else {
+                                        this.set("title", "<a>+ ...</a>");
+                                    }
+                                }
+                            }).domNode, dtpl);
+                            domConstruct.create("br", {}, dtpl);
+                            domConstruct.place(new TitlePane({
+                                id: "tppl",
+                                title: "<a>Programming&nbsp;Languages</a>",
+                                content: dtpl,
+                                open: true,
+                                onClick: function () {
+                                }
+                            }).domNode, d);
+
+                            var dtind = domConstruct.create("div", {});
+                            domConstruct.place(new ContentPane({ href: "skillsindt.html", preload: true }, domConstruct.create("div", {})).domNode, dtind);
+                            domConstruct.place(new TitlePane({
+                                title: "<a>+ ...</a>",
+                                href: "skillsind.html",
+                                preload: true,
+                                open: false,
+                                onClick: function () {
+                                    if (this.open == true) {
+                                        this.set("title", "<a>- ...</a>");
+                                    } else {
+                                        this.set("title", "<a>+ ...</a>");
+                                    }
+                                }
+                            }).domNode, dtind);
+                            domConstruct.create("br", {}, dtind);
+                            domConstruct.place(new TitlePane({
+                                id: "tpind",
+                                title: "<a>Business&nbsp;&&nbsp;Industry</a>",
+                                content: dtind,
+                                open: true,
+                                onClick: function () {
+                                }
+                            }).domNode, d);
+                        });
+
+                        break;
+                    default:
+                        //domConstruct.create("text", { innerHTML: swi + registry.byId(swi).get("content") }, d);
+                        break;
+                }
+            });
+        }
+    </script>
+</head>
+<body class="tundra">
+    <div id="appLayout" class="demoLayout"></div>
+</body>
+</html>
