@@ -47,10 +47,12 @@ Atonix Digital is a wholly-owned subsidiary of the Black & Veatch Holding Corpor
 * Agile Scrum and Kanban practice
 * Development team leadership role with collaboration with all Agile roles
 * Coordination with offshore augmentation teams
+* Transition to microservice-oriented architecture
+* DevOps
 * Leadership role collaborating with vendor to implement cloud-located data analytics platform
 * Design and implementation of long-running jobs framework on AWS SQS / S3
 * Test-driven development
-* Spatial capabilities lead
+* Spatial capabilities technical lead
 * Intern supervision
 
 ---
