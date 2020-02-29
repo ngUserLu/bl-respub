@@ -2,6 +2,8 @@
 brianloomis@hotmail.com
 808-754-8925
 [Online resume](http://blrespub.s3-website-us-east-1.amazonaws.com)
+[LinkedIn](https://linkedin.com/in/brian-loomis-developer-and-devopser)
+[GitHub](https://github.com/ngUserLu)
 
 ---
 ####Objective:
@@ -14,10 +16,10 @@ Fifteen years of professional experience, concurrent with the emergence of web t
 ####Career Highlights
 * Produced technical solutions and design standards as a member of Architecture Review Board thereby providing direction for firm-wide transition to modern web architecture
 * Formulated branching strategy and developer workflows to facilitate organizational transition from TFVC mono repo to distributed Git repos
-* Produced containerized MSSQL database to enable integration tests in distributed Git micro repos improving quality of production deployments through early identification of deficiencies
-* Produced containerized REST API increasing time-to-market of new products
+* Produced containerized MSSQL database to enable integration tests in Git micro repos improving quality of production deployments through early identification of deficiencies
+* Produced containerized REST API with automated deployments increasing time-to-market of new products
 * Leadership role collaborating with vendor to implement cloud-located data analytics platform
-* Produced framework to support long-running jobs reducing load on application web server
+* Produced dedicated long-running jobs framework reducing load on application web server
 * Designed and implemented zoom-based layer constraints and geodecimation to progress organizational spatial capabilities to meet contractual requirements
 * Developed custom application server extension to enable geometric network tracing functionality in an HTML client
 * Won grant for GIS hardware and software package for volunteer fire and first responder organization transforming its mapping infrastructure from paper-based to digital
@@ -43,14 +45,13 @@ Atonix Digital is a wholly-owned subsidiary of the Black & Veatch Holding Corpor
 ######Software Programmer / Analyst, 9/2014 - 5/2017
 
 * ASSET360 platform development
-* Architecture Review Board
 * Agile Scrum and Kanban practice
-* Development team leadership role with collaboration with all Agile roles
-* Coordination with offshore augmentation teams
-* Transition to microservice-oriented architecture
-* DevOps
+* Architecture Review Board
+* Leadership role in transition to microservice-oriented architecture
+* Leadership role in DevOps adoption
 * Leadership role collaborating with vendor to implement cloud-located data analytics platform
 * Design and implementation of long-running jobs framework on AWS SQS / S3
+* Coordination with offshore augmentation teams
 * Test-driven development
 * Spatial capabilities technical lead
 * Intern supervision
@@ -80,8 +81,8 @@ HITUS provided advanced geospatial visualization and 3D data management services
 
 ######Developer, 12/2006 - 3/2013
 
-* Management and technical lead of NPDES-driven storm drain data conversion, integration, and access project with City and County of Honolulu; specifically Geodatabase design / development and web application design / development / release management
-* Management and technical lead of stream inventory data conversion, integration, and access project with City and County of Honolulu
+* Management and technical lead of NPDES-driven storm drain data conversion, integration, and access project; specifically, Geodatabase design / development and web application design / development / release management
+* Management and technical lead of stream inventory data integration and access project with City and County of Honolulu
 * Prototype design, development, and marketing of Building Information Management System integrating 3D building model, 2D architectural drawings and real-property data
 * 3D analysis and modeling of LIDAR data for State of Hawaii Attorney General
 
