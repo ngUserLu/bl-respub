@@ -11,19 +11,20 @@
             margin: 0px;
             font-family: Calibri, 'Trebuchet MS', Arial;
         }
+
         ::-webkit-scrollbar {
             width: 12px;
         }
- 
+
         ::-webkit-scrollbar-track {
-            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
             border-radius: 10px;
         }
- 
+
         ::-webkit-scrollbar-thumb {
             border-radius: 10px;
-            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
-        }        
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+        }
 
         img {
             /*height: 65px;*/
@@ -34,6 +35,7 @@
             padding-left: 5px;
             cursor: pointer;
         }
+
         .ico {
             height: 20px;
             width: 20px;
@@ -42,15 +44,18 @@
             margin-left: 0px;
             margin-right: 0px;
         }
+
         .skillsth {
             color: green;
         }
+
         #header {
             position: absolute;
             top: 10px;
             width: 100%;
             text-align: center;
         }
+
         #mp {
             position: absolute;
             top: 30px;
@@ -59,6 +64,7 @@
             float: left;
             z-index: -1;
         }
+
         #con {
             position: absolute;
             bottom: 120px;
@@ -70,6 +76,7 @@
             opacity: 0;
             z-index: -2;
         }
+
         #tent {
             position: absolute;
             right: 10px;
@@ -84,6 +91,7 @@
             padding-right: 10px;
             z-index: -3;
         }
+
         #footer {
             position: absolute;
             bottom: 0px;
@@ -94,6 +102,7 @@
             text-align: center;
             /*border: 2px solid blue;*/
         }
+
         a {
             color: green;
             /*color: cadetblue;*/
@@ -104,7 +113,7 @@
     </style>
 
     <script type="text/javascript">
-        
+
         var wh, ww;  //window
         var mh, mw;  //map full
         var xh, xw;  //map shrunk
@@ -115,140 +124,140 @@
         var btentup = false;
 
         require(["dojo/dom",
-        "dojo/dom-construct",
-        "dijit/layout/BorderContainer",
-        "dijit/layout/ContentPane",
-        "dojo/domReady!"], function (dom, domConstruct, BorderContainer, ContentPane) {
-            /*
-            domConstruct.place(new ContentPane({
-                id: "expcon"
-            }), domConstruct.create("div", {}, dom.byId("con")));
-            */
-            wh = window.innerHeight;
-            ww = window.innerWidth;
-            mh = Math.round(wh * .75);
-            mw = Math.round(ww * .75);
-            xh = Math.round(wh * .25);
-            xw = Math.round(ww * .25);
-            ch = Math.round(wh * .5);
-            cw = Math.round(ww * .5);
-            //alert("h: " + wh + ", w: " + ww);
-            //alert(dom.byId("mp").style.height + ", " + dom.byId("mp").style.width);
-            dom.byId("mp").style.height = mh + "px";
-            dom.byId("mp").style.width = mw + "px";
-            //alert(dom.byId("mp").style.height + ", " + dom.byId("mp").style.width);
-            dom.byId("mp").style.visibility = "visible";
+            "dojo/dom-construct",
+            "dijit/layout/BorderContainer",
+            "dijit/layout/ContentPane",
+            "dojo/domReady!"], function (dom, domConstruct, BorderContainer, ContentPane) {
+                /*
+                domConstruct.place(new ContentPane({
+                    id: "expcon"
+                }), domConstruct.create("div", {}, dom.byId("con")));
+                */
+                wh = window.innerHeight;
+                ww = window.innerWidth;
+                mh = Math.round(wh * .75);
+                mw = Math.round(ww * .75);
+                xh = Math.round(wh * .25);
+                xw = Math.round(ww * .25);
+                ch = Math.round(wh * .5);
+                cw = Math.round(ww * .5);
+                //alert("h: " + wh + ", w: " + ww);
+                //alert(dom.byId("mp").style.height + ", " + dom.byId("mp").style.width);
+                dom.byId("mp").style.height = mh + "px";
+                dom.byId("mp").style.width = mw + "px";
+                //alert(dom.byId("mp").style.height + ", " + dom.byId("mp").style.width);
+                dom.byId("mp").style.visibility = "visible";
 
-            var t = domConstruct.create("table", { style: { "width": "100%" } }, dom.byId("footer"));
-            var tr = domConstruct.create("tr", {}, t);
-            var td = domConstruct.create("td", {}, tr);
-            domConstruct.create("img", {
-                src: "ico_6.png",
-                click: function () {
-                    tentMessage("welcome");
-                }
-            }, td);
-            domConstruct.place(domConstruct.toDom("<br />Welcome"), td);
-            td = domConstruct.create("td", {}, tr);
-            domConstruct.create("img", {
-                src: "ico_2.png",
-                click: function () {
-                    messageFromHinter("exp");
-                }
-            }, td);
-            domConstruct.place(domConstruct.toDom("<br />Work Exp."), td);
-            td = domConstruct.create("td", {}, tr);
-            domConstruct.create("img", {
-                src: "ico_4.png",
-                click: function () {
-                    messageFromHinter("edu");
-                }
-            }, td);
-            domConstruct.place(domConstruct.toDom("<br />Education"), td);
-            td = domConstruct.create("td", {}, tr);
-            domConstruct.create("img", {
-                src: "ico_8.png",
-                click: function () {
-                    messageFromHinter("skills");
-                }
-            }, td);
-            domConstruct.place(domConstruct.toDom("<br />Skills"), td);
-
-            // uncomment this for references start
-            //td = domConstruct.create("td", {}, tr);
-            //domConstruct.create("img", {
-            //    src: "ico_7.png",
-            //    click: function () {
-            //        tentMessage("refs");
-            //    }
-            //}, td);
-            //domConstruct.place(domConstruct.toDom("<br />References"), td);
-            // uncomment this for references end
-
-            /*
-            td = domConstruct.create("td", {}, tr);
-            domConstruct.create("img", {
-                src: "ico_11.png",
-                click: function () {
-
-                }
-            }, td);
-            domConstruct.place(domConstruct.toDom("<br />Contact"), td);
-            */
-            var ct = new BorderContainer({
-                design: "headline",
-                gutters: true,
-                style: { "width": "100%", "height": "100%" }
-            }, domConstruct.create("div", { style: { "overflow": "auto" } }, "con"));
-            
-            ct.addChild(new ContentPane({
-                region: "top",
-                style: { "height": "20px", "textAlign": "right" },
-                content: domConstruct.create("a", {
-                    innerHTML: "&larr;&nbsp;back",
-                    style: { "paddingRight": "20px", "fontSize": "10pt" },
+                var t = domConstruct.create("table", { style: { "width": "100%" } }, dom.byId("footer"));
+                var tr = domConstruct.create("tr", {}, t);
+                var td = domConstruct.create("td", {}, tr);
+                domConstruct.create("img", {
+                    src: "ico_6.png",
                     click: function () {
-                        if (bcramped == true) {
-                            resetColor();
-                            require(["dojo/fx",
-                            "dojo/_base/fx"], function (fx, baseFx) {
-                                fx.chain([
-                                    baseFx.fadeOut({ node: dom.byId("con") }),
-                                    fx.combine([
-                                        baseFx.animateProperty({
-                                            node: dom.byId("mp"),
-                                            properties: {
-                                                height: mh,
-                                                width: mw,
-                                                top: 30,
-                                                left: 10
-                                            }
-                                        }),
-                                        baseFx.animateProperty({
-                                            node: dom.byId("con"),
-                                            properties: {
-                                                height: 0
-                                            }
-                                        })
-                                    ])
-                                ]).play();
-                            });
-                            bcramped = false;
-                        }
+                        tentMessage("welcome");
                     }
-                })
-            }));
-            
-            ct.addChild(new ContentPane({
-                region: "center",
-                id: "conct"
-            }));
-            
-            var t = new ContentPane({
-                id: "tt"
-            }, domConstruct.create("div", {}, "tent"));
+                }, td);
+                domConstruct.place(domConstruct.toDom("<br />Welcome"), td);
+                td = domConstruct.create("td", {}, tr);
+                domConstruct.create("img", {
+                    src: "ico_2.png",
+                    click: function () {
+                        messageFromHinter("exp");
+                    }
+                }, td);
+                domConstruct.place(domConstruct.toDom("<br />Work Exp."), td);
+                td = domConstruct.create("td", {}, tr);
+                domConstruct.create("img", {
+                    src: "ico_4.png",
+                    click: function () {
+                        messageFromHinter("edu");
+                    }
+                }, td);
+                domConstruct.place(domConstruct.toDom("<br />Education"), td);
+                td = domConstruct.create("td", {}, tr);
+                domConstruct.create("img", {
+                    src: "ico_8.png",
+                    click: function () {
+                        messageFromHinter("skills");
+                    }
+                }, td);
+                domConstruct.place(domConstruct.toDom("<br />Skills"), td);
 
-        });
+                // uncomment this for references start
+                //td = domConstruct.create("td", {}, tr);
+                //domConstruct.create("img", {
+                //    src: "ico_7.png",
+                //    click: function () {
+                //        tentMessage("refs");
+                //    }
+                //}, td);
+                //domConstruct.place(domConstruct.toDom("<br />References"), td);
+                // uncomment this for references end
+
+                /*
+                td = domConstruct.create("td", {}, tr);
+                domConstruct.create("img", {
+                    src: "ico_11.png",
+                    click: function () {
+
+                    }
+                }, td);
+                domConstruct.place(domConstruct.toDom("<br />Contact"), td);
+                */
+                var ct = new BorderContainer({
+                    design: "headline",
+                    gutters: true,
+                    style: { "width": "100%", "height": "100%" }
+                }, domConstruct.create("div", { style: { "overflow": "auto" } }, "con"));
+
+                ct.addChild(new ContentPane({
+                    region: "top",
+                    style: { "height": "20px", "textAlign": "right" },
+                    content: domConstruct.create("a", {
+                        innerHTML: "&larr;&nbsp;back",
+                        style: { "paddingRight": "20px", "fontSize": "10pt" },
+                        click: function () {
+                            if (bcramped == true) {
+                                resetColor();
+                                require(["dojo/fx",
+                                    "dojo/_base/fx"], function (fx, baseFx) {
+                                        fx.chain([
+                                            baseFx.fadeOut({ node: dom.byId("con") }),
+                                            fx.combine([
+                                                baseFx.animateProperty({
+                                                    node: dom.byId("mp"),
+                                                    properties: {
+                                                        height: mh,
+                                                        width: mw,
+                                                        top: 30,
+                                                        left: 10
+                                                    }
+                                                }),
+                                                baseFx.animateProperty({
+                                                    node: dom.byId("con"),
+                                                    properties: {
+                                                        height: 0
+                                                    }
+                                                })
+                                            ])
+                                        ]).play();
+                                    });
+                                bcramped = false;
+                            }
+                        }
+                    })
+                }));
+
+                ct.addChild(new ContentPane({
+                    region: "center",
+                    id: "conct"
+                }));
+
+                var t = new ContentPane({
+                    id: "tt"
+                }, domConstruct.create("div", {}, "tent"));
+
+            });
 
         function letterOpener(b) {
             messageFromHinter(b);
@@ -256,528 +265,528 @@
 
         function tentMessage(b) {
             require(["dojo/dom",
-            "dojo/dom-construct",
-            "dijit/layout/ContentPane",
-            "dijit/registry",
-            "dojo/fx",
-            "dojo/_base/fx"], function (dom, domConstruct, ContentPane, registry, fx, baseFx) {
-                var pt;
-                switch (b) {
-                    case "welcome":
-                        /*
-                        pt = new ContentPane({
-                            href: "cltr.html",
-                            preload: true
-                        }, domConstruct.create("div", {}));
-                        */
-                        pt = new ContentPane({}, domConstruct.create("div", {}));
-                        pt.addChild(new ContentPane({
-                            href: "cltr.html",
-                            preload: true
-                        }));
-                        pt.addChild(new ContentPane({
-                            href: "cltrendindex.html",
-                            preload: true
-                        }));
-                        break;
-                    case "refs":
-                        pt = new ContentPane({
-                            href: "refs.html",
-                            preload: true
-                        }, domConstruct.create("div", {}));
-                        break;
-                }
+                "dojo/dom-construct",
+                "dijit/layout/ContentPane",
+                "dijit/registry",
+                "dojo/fx",
+                "dojo/_base/fx"], function (dom, domConstruct, ContentPane, registry, fx, baseFx) {
+                    var pt;
+                    switch (b) {
+                        case "welcome":
+                            /*
+                            pt = new ContentPane({
+                                href: "cltr.html",
+                                preload: true
+                            }, domConstruct.create("div", {}));
+                            */
+                            pt = new ContentPane({}, domConstruct.create("div", {}));
+                            pt.addChild(new ContentPane({
+                                href: "cltr.html",
+                                preload: true
+                            }));
+                            pt.addChild(new ContentPane({
+                                href: "cltrendindex.html",
+                                preload: true
+                            }));
+                            break;
+                        case "refs":
+                            pt = new ContentPane({
+                                href: "refs.html",
+                                preload: true
+                            }, domConstruct.create("div", {}));
+                            break;
+                    }
 
-                if (bcramped == true) {
-                    resetColor();
-                    fx.chain([
-                        baseFx.fadeOut({ node: dom.byId("con") }),
-                        fx.combine([
-                            baseFx.animateProperty({
-                                node: dom.byId("mp"),
-                                properties: {
-                                    height: mh,
-                                    width: mw,
-                                    top: 30,
-                                    left: 10
-                                }
-                            }),
-                            baseFx.animateProperty({
-                                node: dom.byId("con"),
-                                properties: {
-                                    height: 0
-                                }
-                            })
-                        ])
-                    ]).play();
-                    window.setTimeout(function () {
-                        registry.byId("tt").set("content", pt);
-                    }, 700);
-                    window.setTimeout(function () {
-                        baseFx.fadeIn({ node: dom.byId("tent") }).play();
-                    }, 800);
-                    bcramped = false;
-                    btentup = true;
-                } else {
-                    if (btentup == false) {
-                        registry.byId("tt").set("content", pt);
-                        window.setTimeout(function () {
-                            baseFx.fadeIn({ node: dom.byId("tent") }).play();
-                        }, 100);
-
-                        btentup = true;
-                    } else {
-                        baseFx.fadeOut({ node: dom.byId("tent") }).play();
+                    if (bcramped == true) {
+                        resetColor();
+                        fx.chain([
+                            baseFx.fadeOut({ node: dom.byId("con") }),
+                            fx.combine([
+                                baseFx.animateProperty({
+                                    node: dom.byId("mp"),
+                                    properties: {
+                                        height: mh,
+                                        width: mw,
+                                        top: 30,
+                                        left: 10
+                                    }
+                                }),
+                                baseFx.animateProperty({
+                                    node: dom.byId("con"),
+                                    properties: {
+                                        height: 0
+                                    }
+                                })
+                            ])
+                        ]).play();
                         window.setTimeout(function () {
                             registry.byId("tt").set("content", pt);
-                        }, 400);
+                        }, 700);
                         window.setTimeout(function () {
                             baseFx.fadeIn({ node: dom.byId("tent") }).play();
-                        }, 500);
+                        }, 800);
+                        bcramped = false;
+                        btentup = true;
+                    } else {
+                        if (btentup == false) {
+                            registry.byId("tt").set("content", pt);
+                            window.setTimeout(function () {
+                                baseFx.fadeIn({ node: dom.byId("tent") }).play();
+                            }, 100);
+
+                            btentup = true;
+                        } else {
+                            baseFx.fadeOut({ node: dom.byId("tent") }).play();
+                            window.setTimeout(function () {
+                                registry.byId("tt").set("content", pt);
+                            }, 400);
+                            window.setTimeout(function () {
+                                baseFx.fadeIn({ node: dom.byId("tent") }).play();
+                            }, 500);
+                        }
                     }
-                }
-            });
+                });
         }
-        
+
         function messageFromHinter(b) {
             require(["dojo/dom",
-            "dojo/dom-construct",
-            "dojo/fx",
-            "dojo/_base/fx",
-            "dijit/layout/ContentPane",
-            "dijit/TitlePane",
-            "dijit/registry"], function (dom, domConstruct, fx, baseFx, ContentPane, TitlePane, registry) {
-                var ct = registry.byId("conct");
-                var cpt = new ContentPane({
-                    style: { "paddingLeft":"30px", "paddingRight": "70px" }
-                }, domConstruct.create("div", {}));
+                "dojo/dom-construct",
+                "dojo/fx",
+                "dojo/_base/fx",
+                "dijit/layout/ContentPane",
+                "dijit/TitlePane",
+                "dijit/registry"], function (dom, domConstruct, fx, baseFx, ContentPane, TitlePane, registry) {
+                    var ct = registry.byId("conct");
+                    var cpt = new ContentPane({
+                        style: { "paddingLeft": "30px", "paddingRight": "70px" }
+                    }, domConstruct.create("div", {}));
 
-                resetColor();
+                    resetColor();
 
-                switch (b) {
-                    case "lawrence":
-                        dom.byId("path3925").style.fill = co;
-                        cpt.addChild(new ContentPane({content:"<img src='ico_4_ico.svg' alt='edu ico' class='ico' />"}));
-                        cpt.addChild(new ContentPane({ href: "ku.html", preload: true }));
-                        break;
-                    case "golfito":
-                        dom.byId("path3925-4-4").style.fill = co;
-                        cpt.addChild(new ContentPane({ content: "<img src='ico_4_ico.svg' alt='edu ico' class='ico' />" }));
-                        cpt.addChild(new ContentPane({ href: "cr.html", preload: true }));
-                        break;
-                    case "elgin":
-                        dom.byId("path3959").style.fill = co;
-                        cpt.addChild(new ContentPane({ content: "<img src='ico_2_ico.svg' alt='work ico' class='ico' />" }));
-                        cpt.addChild(new ContentPane({ href: "arr.html", preload: true }));
-                        break;
-                    case "redlands":
-                        dom.byId("path3925-4").style.fill = co;
-                        cpt.addChild(new ContentPane({ content: "<img src='ico_4_ico.svg' alt='edu ico' class='ico' />" }));
-                        cpt.addChild(new ContentPane({ href: "uor.html", preload: true }));
-                        break;
-                    case "honolulu":
-                        dom.byId("path3959-7").style.fill = co;
-                        cpt.addChild(new TitlePane({
-                            title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>City and County of Honolulu | April - September 2013</a>",
-                            href: "cch.html",
-                            preload: true,
-                            open: true,
-                            onClick: function () {
-                            }
-                        }));
-                        cpt.addChild(new TitlePane({
-                            title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>Celtic Pipes and Drums of Hawaii | November 2012 - Present</a>",
-                            href: "cpdh.html",
-                            preload: true,
-                            open: false,
-                            onClick: function () {
-                            }
-                        }));
-                        cpt.addChild(new TitlePane({
-                            title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>Hi-Tech Urban Solutions, Inc. | December 2006 - April 2013</a>",
-                            href: "hitus.html",
-                            preload: true,
-                            open: false,
-                            onClick: function () {
-                            }
-                        }));
-                        cpt.addChild(new TitlePane({
-                            title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>Lobaserv | September - December 2006</a>",
-                            href: "lobaserv.html",
-                            preload: true,
-                            open: false,
-                            onClick: function () {
-                            }
-                        }));
-                        cpt.addChild(new TitlePane({
-                            title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>HIGICC | July 2005 - June 2009</a>",
-                            href: "higicc.html",
-                            preload: true,
-                            open: false,
-                            onClick: function () {
-                            }
-                        }));
-                        cpt.addChild(new TitlePane({
-                            title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>Woolpert, Inc. | August 2004 - September 2006</a>",
-                            href: "wp.html",
-                            preload: true,
-                            open: false,
-                            onClick: function () {
-                            }
-                        }));
-                        break;
-                    case "manhattan":
-                        dom.byId("path3959-1").style.fill = co;
-                        cpt.addChild(new ContentPane({ content: "<img src='ico_2_ico.svg' alt='work ico' class='ico' />" }));
-                        cpt.addChild(new ContentPane({ href: "kstate.html", preload: true }));
-                        break;
-                    case "overlandpark":
-                        dom.byId("path3959-1-9").style.fill = co;
-                        cpt.addChild(new ContentPane({ content: "<img src='ico_2_ico.svg' alt='work ico' class='ico' />" }));
-                        cpt.addChild(new ContentPane({ href: "atx.html", preload: true }));
-                        break;
-                    case "exp":
-                        cpt.addChild(new TitlePane({
-                            title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>Atonix Digital | September 2014 - Current</a>",
-                            href: "atx.html",
-                            preload: true,
-                            open: true,
-                            onClick: function () {
-                            }
-                        }));
-                        cpt.addChild(new TitlePane({
-                            title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>Kansas State University | September 2013 - August 2014</a>",
-                            href: "kstate.html",
-                            preload: true,
-                            open: false,
-                            onClick: function () {
-                            }
-                        }));
-                        cpt.addChild(new TitlePane({
-                            title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>City and County of Honolulu | April - September 2013</a>",
-                            href: "cch.html",
-                            preload: true,
-                            open: false,
-                            style: { "width": "100%" },
-                            onClick: function () {
-                            }
-                        }));
-                        cpt.addChild(new TitlePane({
-                            title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>Celtic Pipes and Drums of Hawaii | November 2012 - Present</a>",
-                            href: "cpdh.html",
-                            preload: true,
-                            open: false,
-                            onClick: function () {
-                            }
-                        }));
-                        cpt.addChild(new TitlePane({
-                            title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>Hi-Tech Urban Solutions, Inc. | December 2006 - April 2013</a>",
-                            href: "hitus.html",
-                            preload: true,
-                            open: false,
-                            onClick: function () {
-                            }
-                        }));
-                        cpt.addChild(new TitlePane({
-                            title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>Lobaserv | September - December 2006</a>",
-                            href: "lobaserv.html",
-                            preload: true,
-                            open: false,
-                            onClick: function () {
-                            }
-                        }));
-                        cpt.addChild(new TitlePane({
-                            title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>HIGICC | July 2005 - June 2009</a>",
-                            href: "higicc.html",
-                            preload: true,
-                            open: false,
-                            onClick: function () {
-                            }
-                        }));
-                        cpt.addChild(new TitlePane({
-                            title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>Woolpert, Inc. | August 2004 - September 2006</a>",
-                            href: "wp.html",
-                            preload: true,
-                            open: false,
-                            onClick: function () {
-                            }
-                        }));
-                        cpt.addChild(new TitlePane({
-                            title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>Audubon Research Ranch | June 2002 - August 2003</a>",
-                            href: "arr.html",
-                            preload: true,
-                            open: false,
-                            onClick: function () {
-                            }
-                        }));
-                        break;
-                    case "edu":
-                        cpt.addChild(new TitlePane({
-                            title: "<img src='ico_4_ico.svg' alt='edu icon' class='ico' />&nbsp&nbsp;<a>University of Redlands | June 2003 - August 2004</a>",
-                            href: "uor.html",
-                            preload: true,
-                            open: true,
-                            onClick: function () {
-                            }
-                        }));
-                        cpt.addChild(new TitlePane({
-                            title: "<img src='ico_4_ico.svg' alt='edu icon' class='ico' />&nbsp&nbsp;<a>University of Kansas | August 1995 - May 2000</a>",
-                            href: "ku.html",
-                            preload: true,
-                            open: false,
-                            onClick: function () {
-                            }
-                        }));
-                        cpt.addChild(new TitlePane({
-                            title: "<img src='ico_4_ico.svg' alt='edu icon' class='ico' />&nbsp&nbsp;<a>University of Kansas Study Abroad | June - July 1998</a>",
-                            href: "cr.html",
-                            preload: true,
-                            open: false,
-                            onClick: function () {
-                            }
-                        }));
-                        break;
-                    case "skills":
-                        var dtms = domConstruct.create("div", {});
-                        domConstruct.place(new ContentPane({ href: "skillsmst.html", preload: true }, domConstruct.create("div", {})).domNode, dtms);
-                        domConstruct.place(new TitlePane({
-                            title: "<a>+ ...</a>",
-                            href: "skillsms.html",
-                            preload: true,
-                            open: false,
-                            onClick: function () {
-                                if (this.open == true) {
-                                    this.set("title", "<a>- ...</a>");
-                                } else {
-                                    this.set("title", "<a>+ ...</a>");
+                    switch (b) {
+                        case "lawrence":
+                            dom.byId("path3925").style.fill = co;
+                            cpt.addChild(new ContentPane({ content: "<img src='ico_4_ico.svg' alt='edu ico' class='ico' />" }));
+                            cpt.addChild(new ContentPane({ href: "ku.html", preload: true }));
+                            break;
+                        case "golfito":
+                            dom.byId("path3925-4-4").style.fill = co;
+                            cpt.addChild(new ContentPane({ content: "<img src='ico_4_ico.svg' alt='edu ico' class='ico' />" }));
+                            cpt.addChild(new ContentPane({ href: "cr.html", preload: true }));
+                            break;
+                        case "elgin":
+                            dom.byId("path3959").style.fill = co;
+                            cpt.addChild(new ContentPane({ content: "<img src='ico_2_ico.svg' alt='work ico' class='ico' />" }));
+                            cpt.addChild(new ContentPane({ href: "arr.html", preload: true }));
+                            break;
+                        case "redlands":
+                            dom.byId("path3925-4").style.fill = co;
+                            cpt.addChild(new ContentPane({ content: "<img src='ico_4_ico.svg' alt='edu ico' class='ico' />" }));
+                            cpt.addChild(new ContentPane({ href: "uor.html", preload: true }));
+                            break;
+                        case "honolulu":
+                            dom.byId("path3959-7").style.fill = co;
+                            cpt.addChild(new TitlePane({
+                                title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>City and County of Honolulu | April - September 2013</a>",
+                                href: "cch.html",
+                                preload: true,
+                                open: true,
+                                onClick: function () {
                                 }
-                            }
-                        }).domNode, dtms);
-                        domConstruct.create("br", {}, dtms);
-                        cpt.addChild(new TitlePane({
-                            title: "<img src='ico_8_ico.svg' alt='skills ico' class='ico' />&nbsp&nbsp;<a>Microsoft</a>",
-                            content: dtms,
-                            open: false,
-                            onClick: function () {
-                            }
-                        }));
-
-                        //var dtesri = domConstruct.create("div", {});
-                        //domConstruct.place(new ContentPane({ href: "skillsesrit.html", preload: true }, domConstruct.create("div", {})).domNode, dtesri);
-                        //domConstruct.place(new TitlePane({
-                        //    title: "<a>+ ...</a>",
-                        //    href: "skillsesri.html",
-                        //    preload: true,
-                        //    open: false,
-                        //    onClick: function () {
-                        //        if (this.open == true) {
-                        //            this.set("title", "<a>- ...</a>");
-                        //        } else {
-                        //            this.set("title", "<a>+ ...</a>");
-                        //        }
-                        //    }
-                        //}).domNode, dtesri);
-                        //domConstruct.create("br", {}, dtesri);
-                        //cpt.addChild(new TitlePane({
-                        //    title: "<img src='ico_8_ico.svg' alt='skills ico' class='ico' />&nbsp&nbsp;<a>ESRI</a>",
-                        //    content: dtesri,
-                        //    open: false,
-                        //    onClick: function () {
-                        //    }
-                        //}));
-
-                        //var dtweb = domConstruct.create("div", {});
-                        //domConstruct.place(new ContentPane({ href: "skillswebt.html", preload: true }, domConstruct.create("div", {})).domNode, dtweb);
-                        //domConstruct.place(new TitlePane({
-                        //    title: "<a>+ ...</a>",
-                        //    href: "skillsweb.html",
-                        //    preload: true,
-                        //    open: false,
-                        //    onClick: function () {
-                        //        if (this.open == true) {
-                        //            this.set("title", "<a>- ...</a>");
-                        //        } else {
-                        //            this.set("title", "<a>+ ...</a>");
-                        //        }
-                        //    }
-                        //}).domNode, dtweb);
-                        //domConstruct.create("br", {}, dtweb);
-                        //cpt.addChild(new TitlePane({
-                        //    title: "<img src='ico_8_ico.svg' alt='skills ico' class='ico' />&nbsp&nbsp;<a>Web</a>",
-                        //    content: dtweb,
-                        //    open: false,
-                        //    onClick: function () {
-                        //    }
-                        //}));
-
-                        //var dtmobile = domConstruct.create("div", {});
-                        //domConstruct.place(new ContentPane({ href: "skillsmobilet.html", preload: true }, domConstruct.create("div", {})).domNode, dtmobile);
-                        //domConstruct.place(new TitlePane({
-                        //    title: "<a>+ ...</a>",
-                        //    href: "skillsmobile.html",
-                        //    preload: true,
-                        //    open: false,
-                        //    onClick: function () {
-                        //        if (this.open == true) {
-                        //            this.set("title", "<a>- ...</a>");
-                        //        } else {
-                        //            this.set("title", "<a>+ ...</a>");
-                        //        }
-                        //    }
-                        //}).domNode, dtmobile);
-                        //domConstruct.create("br", {}, dtmobile);
-                        //cpt.addChild(new TitlePane({
-                        //    title: "<img src='ico_8_ico.svg' alt='skills ico' class='ico' />&nbsp&nbsp;<a>Mobile</a>",
-                        //    content: dtmobile,
-                        //    open: false,
-                        //    onClick: function () {
-                        //    }
-                        //}));
-
-                        var dtcloud = domConstruct.create("div", {});
-                        domConstruct.place(new ContentPane({ href: "skillscloudt.html", preload: true }, domConstruct.create("div", {})).domNode, dtcloud);
-                        domConstruct.place(new TitlePane({
-                            title: "<a>+ ...</a>",
-                            href: "skillscloud.html",
-                            preload: true,
-                            open: false,
-                            onClick: function () {
-                                if (this.open == true) {
-                                    this.set("title", "<a>- ...</a>");
-                                } else {
-                                    this.set("title", "<a>+ ...</a>");
+                            }));
+                            cpt.addChild(new TitlePane({
+                                title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>Celtic Pipes and Drums of Hawaii | November 2012 - Present</a>",
+                                href: "cpdh.html",
+                                preload: true,
+                                open: false,
+                                onClick: function () {
                                 }
-                            }
-                        }).domNode, dtcloud);
-                        domConstruct.create("br", {}, dtcloud);
-                        cpt.addChild(new TitlePane({
-                            title: "<img src='ico_8_ico.svg' alt='skills ico' class='ico' />&nbsp&nbsp;<a>Cloud</a>",
-                            content: dtcloud,
-                            open: false,
-                            onClick: function () {
-                            }
-                        }));
-
-                        //var dtpl = domConstruct.create("div", {});
-                        //domConstruct.place(new ContentPane({ href: "skillsplt.html", preload: true }, domConstruct.create("div", {})).domNode, dtpl);
-                        //domConstruct.place(new TitlePane({
-                        //    title: "<a>+ ...</a>",
-                        //    href: "skillspl.html",
-                        //    preload: true,
-                        //    open: false,
-                        //    onClick: function () {
-                        //        if (this.open == true) {
-                        //            this.set("title", "<a>- ...</a>");
-                        //        } else {
-                        //            this.set("title", "<a>+ ...</a>");
-                        //        }
-                        //    }
-                        //}).domNode, dtpl);
-                        //domConstruct.create("br", {}, dtpl);
-                        //cpt.addChild(new TitlePane({
-                        //    title: "<img src='ico_8_ico.svg' alt='skills ico' class='ico' />&nbsp&nbsp;<a>Programming&nbsp;Languages</a>",
-                        //    content: dtpl,
-                        //    open: false,
-                        //    onClick: function () {
-                        //    }
-                        //}));
-
-                        //var dtind = domConstruct.create("div", {});
-                        //domConstruct.place(new ContentPane({ href: "skillsindt.html", preload: true }, domConstruct.create("div", {})).domNode, dtind);
-                        //domConstruct.place(new TitlePane({
-                        //    title: "<a>+ ...</a>",
-                        //    href: "skillsind.html",
-                        //    preload: true,
-                        //    open: false,
-                        //    onClick: function () {
-                        //        if (this.open == true) {
-                        //            this.set("title", "<a>- ...</a>");
-                        //        } else {
-                        //            this.set("title", "<a>+ ...</a>");
-                        //        }
-                        //    }
-                        //}).domNode, dtind);
-                        //domConstruct.create("br", {}, dtind);
-                        //cpt.addChild(new TitlePane({
-                        //    title: "<img src='ico_8_ico.svg' alt='skills ico' class='ico' />&nbsp&nbsp;<a>Business&nbsp;&&nbsp;Industry</a>",
-                        //    content: dtind,
-                        //    open: false,
-                        //    onClick: function () {
-                        //    }
-                        //}));
-
-                        break;
-                }
-
-                if (bcramped == false) {
-                    if (btentup == true) {
-                        ct.set("content", cpt);
-                        fx.chain([
-                            baseFx.fadeOut({ node: dom.byId("tent") }),
-                            fx.combine([
-                                baseFx.animateProperty({
-                                    node: dom.byId("mp"),
-                                    properties: {
-                                        height: xh,
-                                        width: xw,
-                                        top: 30,
-                                        left: 10
-                                    }
-                                }),
-                                baseFx.animateProperty({
-                                    node: dom.byId("con"),
-                                    properties: {
-                                        height: ch
-                                    }
-                                }),
-                            ]),
-                            baseFx.animateProperty({
-                                node: dom.byId("con"),
-                                properties: {
-                                    opacity: 1
+                            }));
+                            cpt.addChild(new TitlePane({
+                                title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>Hi-Tech Urban Solutions, Inc. | December 2006 - April 2013</a>",
+                                href: "hitus.html",
+                                preload: true,
+                                open: false,
+                                onClick: function () {
                                 }
-                            })
-                        ]).play();
-                    } else {
-                        ct.set("content", cpt);
-                        fx.chain([
-                            fx.combine([
-                                baseFx.animateProperty({
-                                    node: dom.byId("mp"),
-                                    properties: {
-                                        height: xh,
-                                        width: xw,
-                                        top: 30,
-                                        left: 10
-                                    }
-                                }),
-                                baseFx.animateProperty({
-                                    node: dom.byId("con"),
-                                    properties: {
-                                        height: ch
-                                    }
-                                }),
-                            ]),
-                            baseFx.animateProperty({
-                                node: dom.byId("con"),
-                                properties: {
-                                    opacity: 1
+                            }));
+                            cpt.addChild(new TitlePane({
+                                title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>Lobaserv | September - December 2006</a>",
+                                href: "lobaserv.html",
+                                preload: true,
+                                open: false,
+                                onClick: function () {
                                 }
-                            })
-                        ]).play();
+                            }));
+                            cpt.addChild(new TitlePane({
+                                title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>HIGICC | July 2005 - June 2009</a>",
+                                href: "higicc.html",
+                                preload: true,
+                                open: false,
+                                onClick: function () {
+                                }
+                            }));
+                            cpt.addChild(new TitlePane({
+                                title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>Woolpert, Inc. | August 2004 - September 2006</a>",
+                                href: "wp.html",
+                                preload: true,
+                                open: false,
+                                onClick: function () {
+                                }
+                            }));
+                            break;
+                        case "manhattan":
+                            dom.byId("path3959-1").style.fill = co;
+                            cpt.addChild(new ContentPane({ content: "<img src='ico_2_ico.svg' alt='work ico' class='ico' />" }));
+                            cpt.addChild(new ContentPane({ href: "kstate.html", preload: true }));
+                            break;
+                        case "overlandpark":
+                            dom.byId("path3959-1-9").style.fill = co;
+                            cpt.addChild(new ContentPane({ content: "<img src='ico_2_ico.svg' alt='work ico' class='ico' />" }));
+                            cpt.addChild(new ContentPane({ href: "atx.html", preload: true }));
+                            break;
+                        case "exp":
+                            cpt.addChild(new TitlePane({
+                                title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>Atonix Digital | September 2014 - Current</a>",
+                                href: "atx.html",
+                                preload: true,
+                                open: true,
+                                onClick: function () {
+                                }
+                            }));
+                            cpt.addChild(new TitlePane({
+                                title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>Kansas State University | September 2013 - August 2014</a>",
+                                href: "kstate.html",
+                                preload: true,
+                                open: false,
+                                onClick: function () {
+                                }
+                            }));
+                            cpt.addChild(new TitlePane({
+                                title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>City and County of Honolulu | April - September 2013</a>",
+                                href: "cch.html",
+                                preload: true,
+                                open: false,
+                                style: { "width": "100%" },
+                                onClick: function () {
+                                }
+                            }));
+                            //cpt.addChild(new TitlePane({
+                            //    title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>Celtic Pipes and Drums of Hawaii | November 2012 - Present</a>",
+                            //    href: "cpdh.html",
+                            //    preload: true,
+                            //    open: false,
+                            //    onClick: function () {
+                            //    }
+                            //}));
+                            cpt.addChild(new TitlePane({
+                                title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>Hi-Tech Urban Solutions, Inc. | December 2006 - April 2013</a>",
+                                href: "hitus.html",
+                                preload: true,
+                                open: false,
+                                onClick: function () {
+                                }
+                            }));
+                            cpt.addChild(new TitlePane({
+                                title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>Lobaserv | September - December 2006</a>",
+                                href: "lobaserv.html",
+                                preload: true,
+                                open: false,
+                                onClick: function () {
+                                }
+                            }));
+                            //cpt.addChild(new TitlePane({
+                            //    title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>HIGICC | July 2005 - June 2009</a>",
+                            //    href: "higicc.html",
+                            //    preload: true,
+                            //    open: false,
+                            //    onClick: function () {
+                            //    }
+                            //}));
+                            cpt.addChild(new TitlePane({
+                                title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>Woolpert, Inc. | August 2004 - September 2006</a>",
+                                href: "wp.html",
+                                preload: true,
+                                open: false,
+                                onClick: function () {
+                                }
+                            }));
+                            cpt.addChild(new TitlePane({
+                                title: "<img src='ico_2_ico.svg' alt='work icon' class='ico' />&nbsp&nbsp;<a>Audubon Research Ranch | June 2002 - August 2003</a>",
+                                href: "arr.html",
+                                preload: true,
+                                open: false,
+                                onClick: function () {
+                                }
+                            }));
+                            break;
+                        case "edu":
+                            cpt.addChild(new TitlePane({
+                                title: "<img src='ico_4_ico.svg' alt='edu icon' class='ico' />&nbsp&nbsp;<a>University of Redlands | June 2003 - August 2004</a>",
+                                href: "uor.html",
+                                preload: true,
+                                open: true,
+                                onClick: function () {
+                                }
+                            }));
+                            cpt.addChild(new TitlePane({
+                                title: "<img src='ico_4_ico.svg' alt='edu icon' class='ico' />&nbsp&nbsp;<a>University of Kansas | August 1995 - May 2000</a>",
+                                href: "ku.html",
+                                preload: true,
+                                open: false,
+                                onClick: function () {
+                                }
+                            }));
+                            cpt.addChild(new TitlePane({
+                                title: "<img src='ico_4_ico.svg' alt='edu icon' class='ico' />&nbsp&nbsp;<a>University of Kansas Study Abroad | June - July 1998</a>",
+                                href: "cr.html",
+                                preload: true,
+                                open: false,
+                                onClick: function () {
+                                }
+                            }));
+                            break;
+                        case "skills":
+                            var dtms = domConstruct.create("div", {});
+                            domConstruct.place(new ContentPane({ href: "skillsmst.html", preload: true }, domConstruct.create("div", {})).domNode, dtms);
+                            domConstruct.place(new TitlePane({
+                                title: "<a>+ ...</a>",
+                                href: "skillsms.html",
+                                preload: true,
+                                open: false,
+                                onClick: function () {
+                                    if (this.open == true) {
+                                        this.set("title", "<a>- ...</a>");
+                                    } else {
+                                        this.set("title", "<a>+ ...</a>");
+                                    }
+                                }
+                            }).domNode, dtms);
+                            domConstruct.create("br", {}, dtms);
+                            cpt.addChild(new TitlePane({
+                                title: "<img src='ico_8_ico.svg' alt='skills ico' class='ico' />&nbsp&nbsp;<a>Microsoft</a>",
+                                content: dtms,
+                                open: false,
+                                onClick: function () {
+                                }
+                            }));
+
+                            //var dtesri = domConstruct.create("div", {});
+                            //domConstruct.place(new ContentPane({ href: "skillsesrit.html", preload: true }, domConstruct.create("div", {})).domNode, dtesri);
+                            //domConstruct.place(new TitlePane({
+                            //    title: "<a>+ ...</a>",
+                            //    href: "skillsesri.html",
+                            //    preload: true,
+                            //    open: false,
+                            //    onClick: function () {
+                            //        if (this.open == true) {
+                            //            this.set("title", "<a>- ...</a>");
+                            //        } else {
+                            //            this.set("title", "<a>+ ...</a>");
+                            //        }
+                            //    }
+                            //}).domNode, dtesri);
+                            //domConstruct.create("br", {}, dtesri);
+                            //cpt.addChild(new TitlePane({
+                            //    title: "<img src='ico_8_ico.svg' alt='skills ico' class='ico' />&nbsp&nbsp;<a>ESRI</a>",
+                            //    content: dtesri,
+                            //    open: false,
+                            //    onClick: function () {
+                            //    }
+                            //}));
+
+                            //var dtweb = domConstruct.create("div", {});
+                            //domConstruct.place(new ContentPane({ href: "skillswebt.html", preload: true }, domConstruct.create("div", {})).domNode, dtweb);
+                            //domConstruct.place(new TitlePane({
+                            //    title: "<a>+ ...</a>",
+                            //    href: "skillsweb.html",
+                            //    preload: true,
+                            //    open: false,
+                            //    onClick: function () {
+                            //        if (this.open == true) {
+                            //            this.set("title", "<a>- ...</a>");
+                            //        } else {
+                            //            this.set("title", "<a>+ ...</a>");
+                            //        }
+                            //    }
+                            //}).domNode, dtweb);
+                            //domConstruct.create("br", {}, dtweb);
+                            //cpt.addChild(new TitlePane({
+                            //    title: "<img src='ico_8_ico.svg' alt='skills ico' class='ico' />&nbsp&nbsp;<a>Web</a>",
+                            //    content: dtweb,
+                            //    open: false,
+                            //    onClick: function () {
+                            //    }
+                            //}));
+
+                            //var dtmobile = domConstruct.create("div", {});
+                            //domConstruct.place(new ContentPane({ href: "skillsmobilet.html", preload: true }, domConstruct.create("div", {})).domNode, dtmobile);
+                            //domConstruct.place(new TitlePane({
+                            //    title: "<a>+ ...</a>",
+                            //    href: "skillsmobile.html",
+                            //    preload: true,
+                            //    open: false,
+                            //    onClick: function () {
+                            //        if (this.open == true) {
+                            //            this.set("title", "<a>- ...</a>");
+                            //        } else {
+                            //            this.set("title", "<a>+ ...</a>");
+                            //        }
+                            //    }
+                            //}).domNode, dtmobile);
+                            //domConstruct.create("br", {}, dtmobile);
+                            //cpt.addChild(new TitlePane({
+                            //    title: "<img src='ico_8_ico.svg' alt='skills ico' class='ico' />&nbsp&nbsp;<a>Mobile</a>",
+                            //    content: dtmobile,
+                            //    open: false,
+                            //    onClick: function () {
+                            //    }
+                            //}));
+
+                            var dtcloud = domConstruct.create("div", {});
+                            domConstruct.place(new ContentPane({ href: "skillscloudt.html", preload: true }, domConstruct.create("div", {})).domNode, dtcloud);
+                            domConstruct.place(new TitlePane({
+                                title: "<a>+ ...</a>",
+                                href: "skillscloud.html",
+                                preload: true,
+                                open: false,
+                                onClick: function () {
+                                    if (this.open == true) {
+                                        this.set("title", "<a>- ...</a>");
+                                    } else {
+                                        this.set("title", "<a>+ ...</a>");
+                                    }
+                                }
+                            }).domNode, dtcloud);
+                            domConstruct.create("br", {}, dtcloud);
+                            cpt.addChild(new TitlePane({
+                                title: "<img src='ico_8_ico.svg' alt='skills ico' class='ico' />&nbsp&nbsp;<a>Cloud</a>",
+                                content: dtcloud,
+                                open: false,
+                                onClick: function () {
+                                }
+                            }));
+
+                            //var dtpl = domConstruct.create("div", {});
+                            //domConstruct.place(new ContentPane({ href: "skillsplt.html", preload: true }, domConstruct.create("div", {})).domNode, dtpl);
+                            //domConstruct.place(new TitlePane({
+                            //    title: "<a>+ ...</a>",
+                            //    href: "skillspl.html",
+                            //    preload: true,
+                            //    open: false,
+                            //    onClick: function () {
+                            //        if (this.open == true) {
+                            //            this.set("title", "<a>- ...</a>");
+                            //        } else {
+                            //            this.set("title", "<a>+ ...</a>");
+                            //        }
+                            //    }
+                            //}).domNode, dtpl);
+                            //domConstruct.create("br", {}, dtpl);
+                            //cpt.addChild(new TitlePane({
+                            //    title: "<img src='ico_8_ico.svg' alt='skills ico' class='ico' />&nbsp&nbsp;<a>Programming&nbsp;Languages</a>",
+                            //    content: dtpl,
+                            //    open: false,
+                            //    onClick: function () {
+                            //    }
+                            //}));
+
+                            //var dtind = domConstruct.create("div", {});
+                            //domConstruct.place(new ContentPane({ href: "skillsindt.html", preload: true }, domConstruct.create("div", {})).domNode, dtind);
+                            //domConstruct.place(new TitlePane({
+                            //    title: "<a>+ ...</a>",
+                            //    href: "skillsind.html",
+                            //    preload: true,
+                            //    open: false,
+                            //    onClick: function () {
+                            //        if (this.open == true) {
+                            //            this.set("title", "<a>- ...</a>");
+                            //        } else {
+                            //            this.set("title", "<a>+ ...</a>");
+                            //        }
+                            //    }
+                            //}).domNode, dtind);
+                            //domConstruct.create("br", {}, dtind);
+                            //cpt.addChild(new TitlePane({
+                            //    title: "<img src='ico_8_ico.svg' alt='skills ico' class='ico' />&nbsp&nbsp;<a>Business&nbsp;&&nbsp;Industry</a>",
+                            //    content: dtind,
+                            //    open: false,
+                            //    onClick: function () {
+                            //    }
+                            //}));
+
+                            break;
                     }
-                    bcramped = true;
-                } else {
-                    baseFx.fadeOut({ node: dom.byId("con") }).play();
-                    window.setTimeout(function () {
-                        ct.set("content", cpt);
-                    }, 400);
-                    window.setTimeout(function () {
-                        baseFx.fadeIn({ node: dom.byId("con") }).play();
-                    }, 500);
-                }
 
-            });
+                    if (bcramped == false) {
+                        if (btentup == true) {
+                            ct.set("content", cpt);
+                            fx.chain([
+                                baseFx.fadeOut({ node: dom.byId("tent") }),
+                                fx.combine([
+                                    baseFx.animateProperty({
+                                        node: dom.byId("mp"),
+                                        properties: {
+                                            height: xh,
+                                            width: xw,
+                                            top: 30,
+                                            left: 10
+                                        }
+                                    }),
+                                    baseFx.animateProperty({
+                                        node: dom.byId("con"),
+                                        properties: {
+                                            height: ch
+                                        }
+                                    }),
+                                ]),
+                                baseFx.animateProperty({
+                                    node: dom.byId("con"),
+                                    properties: {
+                                        opacity: 1
+                                    }
+                                })
+                            ]).play();
+                        } else {
+                            ct.set("content", cpt);
+                            fx.chain([
+                                fx.combine([
+                                    baseFx.animateProperty({
+                                        node: dom.byId("mp"),
+                                        properties: {
+                                            height: xh,
+                                            width: xw,
+                                            top: 30,
+                                            left: 10
+                                        }
+                                    }),
+                                    baseFx.animateProperty({
+                                        node: dom.byId("con"),
+                                        properties: {
+                                            height: ch
+                                        }
+                                    }),
+                                ]),
+                                baseFx.animateProperty({
+                                    node: dom.byId("con"),
+                                    properties: {
+                                        opacity: 1
+                                    }
+                                })
+                            ]).play();
+                        }
+                        bcramped = true;
+                    } else {
+                        baseFx.fadeOut({ node: dom.byId("con") }).play();
+                        window.setTimeout(function () {
+                            ct.set("content", cpt);
+                        }, 400);
+                        window.setTimeout(function () {
+                            baseFx.fadeIn({ node: dom.byId("con") }).play();
+                        }, 500);
+                    }
+
+                });
         }
 
         function resetColor() {
@@ -791,6 +800,9 @@
                 dom.byId("path3959-1-9").style.fill = cg;
             });
         }
+
+        // start
+        tentMessage("welcome");
     </script>
 </head>
 <body style="background-color: #444; color: white">
@@ -798,7 +810,11 @@
         <table style="width: 100%">
             <tr>
                 <td style="font-size: 24pt; float:left">Brian Loomis</td>
-                <td style="float: right; text-align: right; font-size: 10pt">brianloomis@hotmail.com<br />808-754-8925<br />resume:&nbsp;<a href="Brian_Loomis_Resume.md" target="_blank">Markdown</a>&nbsp;|&nbsp;<a href="Brian_Loomis_Resume.pdf" target="_blank">PDF</a></td>
+                <td style="float: right; text-align: right; font-size: 10pt">brianloomis@hotmail.com
+                <br />808-754-8925
+                <br />resume:&nbsp;<a href="Brian_Loomis_Resume.md" target="_blank">Markdown</a>&nbsp;|&nbsp;<a href="Brian_Loomis_Resume.pdf" target="_blank">PDF</a>
+                <br /><a href="https://linkedin.com/in/brian-loomis-developer-and-devopser" target="_blank">LinkedIn</a>&nbsp;|&nbsp;<a href="https://github.com/ngUserLu" target="_blank">GitHub</a>
+                </td>
             </tr>
         </table>
     </div>
